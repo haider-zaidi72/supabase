@@ -28,6 +28,15 @@ async function signup () {
     const email = document.getElementById('userEmail').value;
     const password = document.getElementById('userPassWord').value;
 
+    if(!email || !password){
+        alert('please fill all fields')
+        return;
+    }
+
+    // save to local storage //
+    const user = { email, password}
+    localStorage.setItem ("user", JSON.stringify())
+    alert("account created sucessfully");
 
     
  const { data, error } = await client.auth.signUp({
@@ -35,26 +44,30 @@ async function signup () {
   password: userPassWord.value,
 })
 
-     localStorage.setItem('email', userEmail.value);
-    localStorage.setItem('password', userPassWord.value);
 }
 
 async function login (){
-    email = userEmail.value;
-    password = userPassWord.value;
+const email = document.getElementById('userEmail').value;
+const password = document.getElementById('userPassWord').value;
+
+const storedUser = JSON.parse(localStorage.getItem(storedUser));
+
+if(!storedUser){
+    alert("credential are not correct please signin First")
+}
+if(email === storedUser.email && password === storedUser.password){
+    alert("Login Sucessfull")
+}else{
+    alert("Invalid email or password")
+}
 
 const { data, error } = await client.auth.signInWithPassword({
   email: userEmail.value,
   password: userPassWord.value,
 })
-//    if (userEmail = ) {
-    
-//    } else {
-    
-//    }
+
    window.location.href = 'dashboard.html'
-    localStorage.setItem('email', userEmail.value);
-    localStorage.setItem('password', userPassWord.value);
+    
 }
 
 
