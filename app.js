@@ -15,13 +15,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     const email = userEmail.value;
     const password = userPassWord.value;
-
-    console.log(userEmail.value, userPassWord.value)
-
-    localStorage.setItem('email', email)
-    localStorage.setItem('pasword', password)
 })
-
 
 async function signup () {
  
@@ -35,22 +29,29 @@ async function signup () {
 
     // save to local storage //
     const user = { email, password}
-    localStorage.setItem ("user", JSON.stringify())
+    localStorage.setItem ("user", JSON.stringify(user));
     alert("account created sucessfully");
 
     
  const { data, error } = await client.auth.signUp({
-  email: userEmail.value,
-  password: userPassWord.value,
-})
+  email: email,
+  password: password,
+});
 
-}
+if (error) {
+        console.error('Signup error:', error.message);
+        alert('Signup failed: ' + error.message);
+    } else {
+        console.log('Signup success:', data);
+        alert('Please verify your email to continue.');
+    }
+};
 
 async function login (){
 const email = document.getElementById('userEmail').value;
 const password = document.getElementById('userPassWord').value;
 
-const storedUser = JSON.parse(localStorage.getItem(storedUser));
+const storedUser = JSON.parse(localStorage.getItem("user"));
 
 if(!storedUser){
     alert("credential are not correct please signin First")
@@ -59,16 +60,17 @@ if(email === storedUser.email && password === storedUser.password){
     alert("Login Sucessfull")
 }else{
     alert("Invalid email or password")
+    return;
 }
 
 const { data, error } = await client.auth.signInWithPassword({
-  email: userEmail.value,
-  password: userPassWord.value,
+  email: email,
+  password: password,
 })
+   window.location.href = 'dashboard.html'    
+};
 
-   window.location.href = 'dashboard.html'
-    
-}
+
 
 
 
