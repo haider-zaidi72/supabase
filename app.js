@@ -57,17 +57,41 @@ if(!storedUser){
     alert("credential are not correct please signin First")
 }
 if(email === storedUser.email && password === storedUser.password){
-    alert("Login Sucessfull")
+    alert("Login Successfull")
 }else{
     alert("Invalid email or password")
     return;
 }
 
+
 const { data, error } = await client.auth.signInWithPassword({
   email: email,
   password: password,
 })
-   window.location.href = 'dashboard.html'    
+
+if (error) {
+    alert("Login failed: " + error.message);
+    return;
+  }
+  
+const { data: userData, error: userError } = await client.auth.getUser();
+if (userError || !userData.user) {
+    alert("Error getting user info");
+    return;
+  }
+
+  // Check if user is email verified
+  const user = userData.user;
+  if (!user.confirmed_at) {
+    alert("Please verify your email before logging in.");
+    await client.auth.signOut(); // force logout
+    return;
+  }
+
+//If email is verified, redirect to dashboard
+  alert("Login successful!");
+  window.location.href = 'dashboard.html';
+  
 };
 
 
