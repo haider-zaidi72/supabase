@@ -26,13 +26,15 @@ async function signup () {
         alert('please fill all fields')
         return;
     }
+    // if(email === localStorage.setItem(user)){
+    //   alert("This email already registered.")
+    // }return;
 
     // save to local storage //
     const user = { email, password}
     localStorage.setItem ("user", JSON.stringify(user));
     alert("account created sucessfully");
 
-    
  const { data, error } = await client.auth.signUp({
   email: email,
   password: password,
@@ -57,7 +59,7 @@ if(!storedUser){
     alert("credential are not correct please signin First")
 }
 if(email === storedUser.email && password === storedUser.password){
-    alert("Login Successfull")
+    // alert("Login Successfull")
 }else{
     alert("Invalid email or password")
     return;
