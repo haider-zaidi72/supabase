@@ -23,7 +23,7 @@ form {
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 450px;
 }
 
 form input {
@@ -36,9 +36,11 @@ form input {
 }
 
 button {
-    width: 100%;
-    padding: 12px;
+    width: 45%;
+    padding: 8px;
     margin-top: 10px;
+    margin-right: 0px;
+    margin-left: 10px;
     border: none;
     border-radius: 6px;
     background-color: #007bff;
