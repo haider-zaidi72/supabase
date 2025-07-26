@@ -39,14 +39,19 @@ async function signup () {
   email: email,
   password: password,
 });
-
-if (error) {
-        console.error('Signup error:', error.message);
-        alert('Signup failed: ' + error.message);
+// if email address is already registered 
+ if (error) {
+        if (error.message.toLowerCase().includes('user already registered')) {
+            alert("This email address is already registered");
+        } else {
+            console.error('Signup error:', error.message);
+            alert('Signup failed: ' + error.message);
+        }
     } else {
         console.log('Signup success:', data);
         alert('Please verify your email to continue.');
     }
+
 };
 
 async function login (){
