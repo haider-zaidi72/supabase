@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supabase Project</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    <form action="" id="form">
-    <input type="email" id="userEmail"><br><br>
-    <input type="password" id="userPassWord"><br><br>
-    
-    </form>
 
-    <button id="submit" onclick = "signup()" type="button">Create Account</button><br><br>
-    <button onclick="login()">Login</button>
+    <div class="container">
+        <form action="" id="form">
+            <input type="email" id="userEmail"><br><br>
+            <input type="password" id="userPassWord"><br><br>
 
+            <button id="submit" onclick="signup()" type="button">Signup</button><br><br>
+        <button onclick="login()">Login</button>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="./app.js"></script>
+        </form>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="./app.js"></script>
+    </div>
 
 </body>
+
 </html>
