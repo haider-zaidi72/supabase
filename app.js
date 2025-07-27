@@ -102,6 +102,33 @@ if (userError || !userData.user) {
 };
 
 
+//Google  signin 
+async function signInWithGoogle() {
+  const { data, error } = await client.auth.signInWithOAuth({
+    provider: 'google',
+  });
+
+  if (error) {
+    console.error('OAuth login error:', error.message);
+    alert("Google login failed: " + error.message);
+  } else {
+    console.log('Redirecting to Google sign-in...');
+  }
+}
+
+
+//
+
+window.addEventListener('DOMContentLoaded', async () => {
+    const { data, error } = await client.auth.getSession();
+
+    if (!data.session) {
+        // Not logged in
+        window.location.href = "index.html";
+    } else {
+        console.log("Logged in as:", data.session.user.email);
+    }
+});
 
 
 
