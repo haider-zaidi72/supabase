@@ -131,5 +131,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 
+// Only redirect if not already on index.html
+if (!data.session && !window.location.pathname.includes("index.html")) {
+    window.location.href = "index.html";
+}
 
 
