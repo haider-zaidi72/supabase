@@ -4,3 +4,15 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const client = supabase.createClient(supabaseUrl, supabaseKey)
 
 console.log(client);
+
+window.addEventListener('DOMContentLoaded', async () => {
+    const { data } = await client.auth.getSession();
+
+    if (!data.session) {
+        // Not logged in, go back to login
+        window.location.href = "index.html";
+    } else {
+        console.log("Welcome", data.session.user.email);
+        // Show dashboard content
+    }
+});
