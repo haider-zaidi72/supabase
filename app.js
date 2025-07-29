@@ -5,14 +5,15 @@ const client = supabase.createClient(supabaseUrl, supabaseKey)
 
 console.log(client);
 
+document.title = "Supabase Project";
 
 const userEmail = document.getElementById('userEmail');
 const userPassWord = document.getElementById('userPassWord');
 
 const form = document.querySelector('form');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
+form.addEventListener('submit', () => {
+    
     const email = userEmail.value;
     const password = userPassWord.value;
 })
@@ -122,18 +123,23 @@ async function signInWithGoogle() {
 window.addEventListener('DOMContentLoaded', async () => {
     const { data, error } = await client.auth.getSession();
 
+    const currentPage = window.location.pathname;
+
     if (!data.session) {
         // Not logged in
-        window.location.href = "index.html";
+        if (!currentPage.includes("index.html")) {
+            window.location.href = "index.html";
+        }
     } else {
         console.log("Logged in as:", data.session.user.email);
+        // Redirect to dashboard if already logged in and not already there
+        if (!currentPage.includes("dashboard.html")) {
+            window.location.href = "dashboard.html";
+        }
     }
 });
 
 
-// Only redirect if not already on index.html
-if (!data.session && !window.location.pathname.includes("index.html")) {
-    window.location.href = "index.html";
-}
+
 
 
