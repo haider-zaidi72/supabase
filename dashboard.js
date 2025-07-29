@@ -5,14 +5,14 @@ const client = supabase.createClient(supabaseUrl, supabaseKey)
 
 console.log(client);
 
-window.addEventListener('DOMContentLoaded', async () => {
-    const { data } = await client.auth.getSession();
+// window.addEventListener('DOMContentLoaded', async () => {
+//     const { data } = await client.auth.getSession();
 
-    if (!data.session) {
-        // Not logged in, go back to login
-        window.location.href = "index.html";
-    } else {
-        console.log("Welcome", data.session.user.email);
-        // Show dashboard content
-    }
-});
+//     if (!data.session) {
+//         // Not logged in, go back to login
+//         window.location.href = "index.html";
+//     } else {
+//         console.log("Welcome", data.session.user.email);
+//         // Show dashboard content
+//     }
+// });
