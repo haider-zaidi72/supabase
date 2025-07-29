@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     if (!data.session) {
         // Not logged in, go back to login
-        window.location.href = "dashboard.html";
+        window.location.href = "index.html";
     } else {
         console.log("Welcome", data.session.user.email);
         // Show dashboard content
